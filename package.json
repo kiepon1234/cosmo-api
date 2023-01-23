@@ -1,6 +1,6 @@
 {
 	"name": "node-cosmo-api",
-	"version": "1.0.1",
+	"version": "1.0.5",
 	"description": "API Cosmo App для разработки ботов, приложений, сайтов.",
 	"devDependencies": {
 		"@types/node": "^18.11.18",
@@ -12,7 +12,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/kiepon1234/cosmo-game-sdk.git"
+		"url": "git+https://github.com/kiepon1234/cosmo-api.git"
 	},
 	"keywords": [
 		"api",
@@ -20,7 +20,9 @@
 		"cosmo-game",
 		"cosmo-game-spi",
 		"cosmo-game-sdk",
-		"api-sdk-cosmo"
+		"api-sdk-cosmo",
+		"cosmo-app",
+		"cosmo-app-api"
 	],
 	"author": {
 		"email": "maksimus111top@gmail.com",
