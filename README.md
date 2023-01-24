@@ -25,7 +25,7 @@ API Cosmo App для разработки ботов, приложений, са
 
 Теперь его нужно открыть и импортировать библиотеку:
 ```js
-const COSMOAPI = require('cosmo-api');
+const { COSMOAPI } = require('cosmo-api');
 const cosmo = new COSMOAPI(options);
 ```
 
