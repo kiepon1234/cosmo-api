@@ -1,62 +1,67 @@
-declare class Methods {
+interface Options {
+    /**
+     * @param {String} option.v - Версия апи
+     */
+    v?: string;
+}
+interface ResponseTransfer {
+    readonly id: number;
+    readonly to_id: number;
+    readonly from_id: number;
+    readonly amount: number;
+    readonly created_at: number;
+    readonly is_shop: boolean;
+}
+export declare class COSMOAPI {
     private verAPI;
     private APIKey;
     /**
-     * @param {String} APIKey - API-Токен пользователя
+     * @param {String} option - Обьект данных
+     * @param {String} option.key - API-Токен пользователя
      */
-    constructor(APIKey: string);
+    constructor(option: {
+        /**
+         * @param {String} key - API-Токен пользователя
+         */
+        key: string;
+    } & Options);
     private sendRequest;
     /**
      * @async
-     * @description Получение баланса
+     * @description Получение баланса текущего пользователя или магазина
      */
-    getMyBalance(): Promise<any>;
+    getMyBalance(): Promise<Array<{
+        merchant_id: number;
+        balance: number;
+    } | {
+        user_id: number;
+        balance: number;
+    }>>;
     /**
      * @async
-     * @description Получение баланса
+     * @description Получение балансов пользователей и магазинов
      */
-    getBalance(ids: number[]): Promise<any>;
+    getBalance(ids: number[]): Promise<Array<{
+        merchant_id: number;
+        balance: number;
+    } | {
+        user_id: number;
+        balance: number;
+    }>>;
     /**
      * @async
      * @description Получение переводов
-     * @param {String} type - Тип необходимых переводов, доступно: all - любые, in - пополнения, out - переводы
+     * @param {String} type - Тип необходимых переводов, доступно: all - все, in - пополнения, out - выводы
      * @param {Number} offset - Смещение, необходимое для выборки определённого подмножества переводов
      * @param {Number} limit - Количество переводов которое нужно получить, максимальное значение 100
      */
-    getTransfers(type?: string, offset?: number, limit?: number): Promise<void>;
+    getTransfers(type?: "all" | "in" | "out", offset?: number, limit?: number): Promise<ResponseTransfer[]>;
     /**
      * @async
-     * @description Перевод пользователю
+     * @description Перевод пользователю или в магазин
      * @param {Number} tID - ID пользователя которому нужно перевести
      * @param {Number} amount - Количество койнов которое нужно перевести
      */
-    createTransfer(tID?: number, amount?: number): Promise<any>;
-    /**
-     * @async
-     * @description Создание Callback
-     * @param {String} url - URL на который будет приходить Callback
-     */
-    createCallback(url?: string): Promise<any>;
-    /**
-     * @async
-     * @description Удаление Callbak
-     * @param {Function} cb Функция Callback при ошибке
-     */
-    deleteCallbak(): Promise<any>;
-}
-export declare class API {
-    methods: Methods;
-    /**
-     * @description Конфигурация
-     * @param {Object} options - Обьект данных
-     * @param {String} option.key - API-ключ пользователя
-     * @param {Number} option.user_id - VK ID пользователя
-     */
-    constructor(options: {
-        /**
-         * @param {String} option.key - API-ключ пользователя
-         */
-        key: string;
-    });
+    createTransfer(tID?: number, amount?: number): Promise<ResponseTransfer>;
 }
 export {};

@@ -1,6 +1,6 @@
 {
-	"name": "node-cosmo-api",
-	"version": "1.0.5",
+	"name": "cosmo-api",
+	"version": "1.0.1",
 	"description": "API Cosmo App для разработки ботов, приложений, сайтов.",
 	"devDependencies": {
 		"@types/node": "^18.11.18",
